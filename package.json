@@ -9,16 +9,39 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@react-oauth/google": "^0.12.1",
+    "@starknet-react/chains": "^0.1.7",
+    "@starknet-react/core": "^2.9.0",
+    "axios": "^1.7.6",
+    "big-number": "^2.0.0",
+    "bignumber.js": "^9.1.2",
+    "ethers": "5.5.1",
+    "framer-motion": "^11.5.4",
+    "get-starknet-core": "^3.3.3",
+    "jotai": "^2.9.3",
+    "next": "14.2.7",
+    "next-auth": "^4.24.7",
+    "react": "^18",
+    "react-calendar-heatmap": "^1.9.0",
+    "react-dom": "^18",
+    "react-toastify": "^10.0.6",
+    "react-tooltip": "^5.28.0",
+    "react-tsparticles": "^2.12.2",
+    "starknet": "^6.11.0",
+    "starknetkit": "^1.1.9",
+    "tsparticles": "2.9.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-calendar-heatmap": "^1.6.7",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "14.2.7",
+    "typescript": "^5"
   }
 }

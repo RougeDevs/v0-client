@@ -1,0 +1,63 @@
+import { Project } from "@/interfaces/interface";
+import { atom } from "jotai";
+
+export const projectsAtom=atom<Project[]>([
+      {
+        id: "95246531-4539-4a07-8c7b-8b567adbf5fc",
+        projectTitle: "test",
+        projectDescription: "test-description",
+        projectThumbnail: "testThumbnail",
+        websiteLink: null,
+        contactEmail: "abc@gmail.com",
+        category: "defi",
+        githubRepository: null,
+        ownerId: "0d2a4384-e3ec-42de-b4d7-449d54721fb2",
+        verificationMethod: 3,
+        socialMediaHandles: [],
+        toolsAndTech: null,
+        tasks:[],
+        socialMediaDetails: null,
+        additionalInfo: null,
+        mailSent: null,
+        signedMessage: null,
+        checksAgreed: null,
+        owner: {
+          id: "0d2a4384-e3ec-42de-b4d7-449d54721fb2",
+          email: "arijeet@hashstack.finance",
+          firstName: " Arijeet",
+          lastName: "Ghosh",
+          image:
+            "https://lh3.googleusercontent.com/a/ACg8ocL_6-r6Kz_viaaQu2Cbja0ej4BqQVpSbM1MNbXFh3WK3nbUhg=s96-c",
+        },
+        moderators: [],
+      },
+      {
+        id: "95246531-4539-4a07-8c7b-8b567adbf5fc",
+        projectTitle: "test",
+        projectDescription: "test-description",
+        projectThumbnail: "testThumbnail",
+        websiteLink: null,
+        contactEmail: "abc@gmail.com",
+        category: "defi",
+        githubRepository: null,
+        ownerId: "0d2a4384-e3ec-42de-b4d7-449d54721fb2",
+        verificationMethod: 3,
+        socialMediaHandles: [],
+        toolsAndTech: null,
+        socialMediaDetails: null,
+        additionalInfo: null,
+        tasks:[],
+        mailSent: null,
+        signedMessage: null,
+        checksAgreed: null,
+        owner: {
+          id: "0d2a4384-e3ec-42de-b4d7-449d54721fb2",
+          email: "arijeet@hashstack.finance",
+          firstName: " Arijeet",
+          lastName: "Ghosh",
+          image:
+            "https://lh3.googleusercontent.com/a/ACg8ocL_6-r6Kz_viaaQu2Cbja0ej4BqQVpSbM1MNbXFh3WK3nbUhg=s96-c",
+        },
+        moderators: [],
+      },
+    ])
