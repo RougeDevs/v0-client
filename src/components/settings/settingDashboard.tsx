@@ -30,6 +30,13 @@ import {
   import STRKLogo from "@/assets/icons/strk";
   import Image from "next/image";
   import TelegramIcon from "../../assets/telegramIcon.png";
+  import WhatsAppIcon from '../../assets/whatsappIcon.png'
+  import TwitterIcon from '../../assets/twitter.png'
+  import YoutubeIcon from '../../assets/youtube.png'
+  import DiscordIcon from '../../assets/discord.png'
+  import FigmaIcon from '../../assets/figma.png'
+  import MediumIcon from '../../assets/blog.png'
+  import ArrowDownIcon from '../../assets/down.png'
   import { useAtom } from "jotai";
   import { userAtom } from "../../store/user.atom";
   import axios from "axios";
@@ -144,6 +151,8 @@ import {
         console.log(error, "erro in fetching code");
       }
     },[profileUpdated])
+
+    console.log(userData,'user data')
     
   
     const areObjectsEqual = (obj1:any, obj2:any) => {
@@ -200,10 +209,6 @@ import {
       {
         id: 4,
         name: "Pinterest",
-      },
-      {
-        id: 5,
-        name: "Starknet",
       },
     ];
     const [applicationDropdownSelected, setapplicationDropdownSelected] =
@@ -263,6 +268,13 @@ import {
       tiktok: "",
       facebook: "",
     });
+
+    useEffect(() => {
+        if (userData) {
+          setSocialMediaIds((userData as any)?.socialMediaHandles);
+        }
+      }, [userData]);
+      
   
     const handlesocialMediaIdsocialLinksChange = (e: any) => {
       const { name, value } = e.target;
@@ -373,19 +385,25 @@ import {
           mt="2rem"
         >
           <Box>
-            <Text fontSize="24px">Settings</Text>
+            <Text fontSize="24px" color="#FF7482">Settings</Text>
           </Box>
           <Box>
             <Tabs>
               <TabList>
-                <Tab>Profile</Tab>
-                <Tab>Payment Info</Tab>
+                <Tab color="grey" _selected={{
+                    color: "blue",
+                    borderBottom: "2px solid blue",
+                }}>Profile</Tab>
+                <Tab color="grey" _selected={{
+                    color: "blue",
+                    borderBottom: "2px solid blue",
+                }}>Payment Info</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel p="0" m="0" mt="2rem">
-                  <Box bg="grey" padding="2rem" borderRadius="6px">
-                    <Text fontSize="24px">Profile Details</Text>
-                    <Text>Info on the profile details</Text>
+                  <Box   bg="#262626" padding="2rem" borderRadius="6px">
+                    <Text fontSize="24px" color="white">Profile Details</Text>
+                    <Text color="whiteAlpha.400">Info on the profile details</Text>
                     <Box
                       mt="1rem"
                       bg="beige"
@@ -400,7 +418,7 @@ import {
                       </Text>
                       <Avatar
                         name="Dan Abrahmov"
-                        src="https://bit.ly/dan-abramov"
+                        src={(userData && (userData as any).image) || ""}
                         size="sm"
                         ml="1rem"
                       />
@@ -529,11 +547,11 @@ import {
                     >
                       <InputGroup>
                         <InputLeftElement pointerEvents="none">
-                          <Image
+                        <Image
                             src={TelegramIcon}
                             alt="telegram"
-                            width={60}
-                            height={60}
+                            width={28}
+                            height={28}
                           />
                           {/* Alternatively, you can use width and height explicitly */}
                           {/* width="20px" height="20px" */}
@@ -557,7 +575,7 @@ import {
                   </Box>
                   <Box
                     mt="1rem"
-                    bg="grey"
+                      bg="#262626"
                     borderRadius="6px"
                     width="100%"
                     display="flex"
@@ -565,10 +583,10 @@ import {
                     padding="2rem"
                   >
                     <Box>
-                      <Text fontSize="24px">
+                      <Text fontSize="24px" color="white">
                         How Would You Describe Your Experience?
                       </Text>
-                      <Text>
+                      <Text color="whiteAlpha.400">
                         Help us understand your expertise to tailor your
                         experience.
                       </Text>
@@ -602,7 +620,7 @@ import {
                       </Box>
   
                       <Box pt="1" className="navbar-button">
-                        Drop
+                        
                       </Box>
   
                       {experienceLevelDropdown && (
@@ -665,7 +683,7 @@ import {
                   </Box>
                   <Box
                     mt="1rem"
-                    bg="grey"
+                      bg="#262626"
                     borderRadius="6px"
                     width="100%"
                     display="flex"
@@ -673,14 +691,14 @@ import {
                     padding="2rem"
                   >
                     <Box>
-                      <Text fontSize="24px">Describe your skillset</Text>
-                      <Text>
+                      <Text fontSize="24px" color="white">Describe your skillset</Text>
+                      <Text color="whiteAlpha.400">
                         Help us understand your expertise to tailor your
                         experience.
                       </Text>
                     </Box>
                     <Box mt="1rem" mb="0.4rem">
-                      <Text fontWeight="500">
+                      <Text fontWeight="500" color="whiteAlpha.500">
                         Please tell us what describes you best
                       </Text>
                     </Box>
@@ -708,8 +726,13 @@ import {
                           <Text color="black">{userCategorySelected}</Text>
                         </Box>
   
-                        <Box pt="1" className="navbar-button">
-                          Drop
+                        <Box  className="navbar-button">
+                        <Image
+                            src={ArrowDownIcon}
+                            alt="telegram"
+                            width={24}
+                            height={24}
+                          />
                         </Box>
   
                         {categoryDropdownSelected && userCatgory.length !== 0 && (
@@ -770,7 +793,7 @@ import {
                         )}
                       </Box>
                       <Box mt="1rem" mb="0.4rem">
-                        <Text fontWeight="500">Please select your skills</Text>
+                        <Text fontWeight="500" color="whiteAlpha.500">Please select your skills</Text>
                       </Box>
   
                       <Box
@@ -795,8 +818,13 @@ import {
                           <Text color="black">Select Tags</Text>
                         </Box>
   
-                        <Box pt="1" className="navbar-button">
-                          Drop
+                        <Box  className="navbar-button">
+                        <Image
+                            src={ArrowDownIcon}
+                            alt="telegram"
+                            width={24}
+                            height={24}
+                          />
                         </Box>
   
                         {skillSetDropdown && skillSet.length !== 0 && (
@@ -863,7 +891,7 @@ import {
                                 colorScheme="blue"
                                 borderRadius="full"
                               >
-                                <TagLabel>{option}</TagLabel>
+                                <TagLabel padding="8px">{option}</TagLabel>
                                 <TagCloseButton
                                   onClick={() => removeOption(option, "skills")}
                                 />
@@ -891,11 +919,11 @@ import {
                       )}
                     </Box>
                   </Box>
-                  <Box bg="grey" padding="2rem" borderRadius="6px" mt="1rem">
-                    <Text fontSize="24px" fontWeight="500">
+                  <Box   bg="#262626" padding="2rem" borderRadius="6px" mt="1rem">
+                    <Text fontSize="24px" fontWeight="500" color="white">
                       More contact info
                     </Text>
-                    <Text>
+                    <Text color="whiteAlpha.400">
                       Please provide us with some of your social Media handles
                     </Text>
                     {
@@ -909,7 +937,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={WhatsAppIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="number"
@@ -921,7 +954,7 @@ import {
                                   outline: "0",
                                   boxShadow: "none",
                                 }}
-                                value={socialMediaIds.whatsapp}
+                                value={socialMediaIds?.whatsapp}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -934,7 +967,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={TwitterIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="text"
@@ -946,7 +984,7 @@ import {
                                   outline: "0",
                                   boxShadow: "none",
                                 }}
-                                value={socialMediaIds.twitter}
+                                value={socialMediaIds?.twitter}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -962,7 +1000,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={DiscordIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="text"
@@ -974,7 +1017,7 @@ import {
                                   outline: "0",
                                   boxShadow: "none",
                                 }}
-                                value={socialMediaIds.discord}
+                                value={socialMediaIds?.discord}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -987,7 +1030,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={MediumIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="text"
@@ -999,7 +1047,7 @@ import {
                                   outline: "0",
                                   boxShadow: "none",
                                 }}
-                                value={socialMediaIds.medium}
+                                value={socialMediaIds?.medium}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -1015,7 +1063,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={YoutubeIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="text"
@@ -1027,7 +1080,7 @@ import {
                                   outline: "0",
                                   boxShadow: "none",
                                 }}
-                                value={socialMediaIds.youtube}
+                                value={socialMediaIds?.youtube}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -1040,7 +1093,12 @@ import {
                           >
                             <InputGroup>
                               <InputLeftElement pointerEvents="none">
-                                Icon
+                              <Image
+                            src={FigmaIcon}
+                            alt="telegram"
+                            width={28}
+                            height={28}
+                          />
                               </InputLeftElement>
                               <Input
                                 type="text"
@@ -1052,7 +1110,7 @@ import {
                                   boxShadow: "none",
                                 }}
                                 placeholder="Figma"
-                                value={socialMediaIds.figma}
+                                value={socialMediaIds?.figma}
                                 onChange={handlesocialMediaIdsocialLinksChange}
                               />
                             </InputGroup>
@@ -1062,7 +1120,7 @@ import {
                     }
                     {
                       <Box
-                        bg="black"
+                        bg="beige"
                         alignItems="center"
                         gap="1rem"
                         width="100%"
@@ -1108,14 +1166,19 @@ import {
                                 }}
                               >
                                 <Box display="flex" gap="1" userSelect="none">
-                                  <Text color="white">
+                                  <Text color="black">
                                     {selectedApplications[index]?.name ||
                                       "Select Application"}
                                   </Text>
                                 </Box>
   
-                                <Box pt="1" className="navbar-button">
-                                  chack
+                                <Box className="navbar-button">
+                                <Image
+                            src={ArrowDownIcon}
+                            alt="telegram"
+                            width={24}
+                            height={24}
+                          />
                                 </Box>
   
                                 {applicationDropdownSelected &&
@@ -1126,6 +1189,8 @@ import {
                                       left="0"
                                       zIndex="1000" // Ensure it appears on top
                                       bg="beige"
+                                      mt="0.4rem"
+                                      borderRadius="6px"
                                       border="1px solid var(--stroke-of-30, rgba(103, 109, 154, 0.30))"
                                       py="2"
                                       color="black"
@@ -1225,12 +1290,12 @@ import {
                                   width="14"
                                   height="14"
                                   viewBox="0 0 14 14"
-                                  fill="none"
+                                  fill="#000"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
                                     d="M13 1L7 7M7 7L1 13M7 7L13 13M7 7L1 1"
-                                    stroke="#F0F0F5"
+                                    stroke="#000"
                                     stroke-width="1.31"
                                     stroke-linecap="round"
                                   />
@@ -1287,9 +1352,9 @@ import {
                       </Box>
                     }
                   </Box>
-                  {userData && <Box bg="grey" padding="2rem" borderRadius="6px" mt="2rem">
-                    <Text fontSize="24px">Danger Zone</Text>
-                    <Text>Only come into this area if you are depressed</Text>
+                  {userData && <Box   bg="#262626" padding="2rem" borderRadius="6px" mt="2rem">
+                    <Text fontSize="24px" color="white">Danger Zone</Text>
+                    <Text color="whiteAlpha.400">Only come into this area if you are depressed</Text>
                     <DeleteAccountModal
                       buttonText="Delete Account"
                       bg="red"
@@ -1298,9 +1363,9 @@ import {
                   </Box>}
                 </TabPanel>
                 <TabPanel p="0" m="0" mt="2rem">
-                  <Box bg="grey" padding="2rem" borderRadius="6px">
-                    <Text fontSize="24px">Payment Info details</Text>
-                    <Text>Info on the payment details</Text>
+                  <Box   bg="#262626" padding="2rem" borderRadius="6px">
+                    <Text fontSize="24px" color="white">Payment Info details</Text>
+                    <Text color="whiteAlpha.400">Info on the payment details</Text>
                     <Box display="flex" gap="1rem">
                       <Box
                         mt="1rem"
@@ -1339,7 +1404,7 @@ import {
               </TabPanels>
             </Tabs>
             <Box
-              bg="grey"
+                bg="#262626"
               display="flex"
               justifyContent="space-between"
               gap="2rem"
@@ -1348,7 +1413,7 @@ import {
               borderRadius="6px"
               width="100%"
             >
-              {<Box>{!areObjectsEqual(userData,formData)?"Changes Made":"No Updates"}</Box>}
+              {<Box color="whiteAlpha.400">{!areObjectsEqual(userData,formData)?"Changes Made":"No Updates"}</Box>}
               <Box display="flex" gap="2rem">
                 <Box>
                   <Button

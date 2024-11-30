@@ -10,16 +10,6 @@ const getSessionStorageValue = (key: string, initialValue: null) => {
 // Custom atom that syncs with sessionStorage
 export const userAtom = atom(
     null
-//   getSessionStorageValue('userData', null), // Initial value from sessionStorage
-
-//   (get, set, newValue) => {
-//     set(userAtom, newValue); // Update the atom
-//     if (newValue === null) {
-//       sessionStorage.removeItem('userData'); // Remove from sessionStorage if null
-//     } else {
-//       sessionStorage.setItem('userData', JSON.stringify(newValue)); // Save to sessionStorage
-//     }
-//   }
 );
 
 export const contributorsAtom=atom(

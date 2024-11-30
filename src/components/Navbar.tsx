@@ -20,26 +20,29 @@ const Navbar = () => {
   const [notificationCenter, setnotificationCenter] = useState<boolean>(false);
   const [notifications, setnotifications] = useState<Notification[]>([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     try {
-      const fetchNotification=async()=>{
+      const fetchNotification = async () => {
         const userLoginToken = localStorage.getItem("userLoginCode");
-        if(userLoginToken){
-          const res=await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/notification`,{
-            headers: {
-              "ngrok-skip-browser-warning": "69420",
-              Authorization: `Bearer ${userLoginToken}`
-            },
-          })
-          setnotifications(res.data.notifications)
+        if (userLoginToken) {
+          const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_BACKEND_API}/user/notification`,
+            {
+              headers: {
+                "ngrok-skip-browser-warning": "69420",
+                Authorization: `Bearer ${userLoginToken}`,
+              },
+            }
+          );
+          setnotifications(res.data.notifications);
         }
-      }
-      fetchNotification() 
+      };
+      // fetchNotification();
     } catch (error) {
-      console.log(error,'err in notification')
+      console.log(error, "err in notification");
     }
-  },[])
-  console.log(notifications,'notii ')
+  }, []);
+  // console.log(notifications, "notii ");
   //   {
   //     "name": "Sahitya Nijhawan",
   //     "email": "sahityanijhawan@gmail.com",
@@ -65,7 +68,10 @@ const Navbar = () => {
             router.push("/");
           }}
         >
-          <Image src={kremaraLogo} alt="" width={100} height={100} />
+          <Box>
+            <Image src={kremaraLogo} alt="" width={120} height={120} />{" "}
+            {/* Increased size */}
+          </Box>
         </Box>
         <Box
           display="flex"
@@ -95,7 +101,7 @@ const Navbar = () => {
             onClick={() => {
               router.push("/rewards");
             }}
-            color='#fff'
+            color="#fff"
             cursor="pointer"
           >
             Rewards
@@ -136,9 +142,7 @@ const Navbar = () => {
           >
             {notifications.map((notification: any, index: number) => (
               <Box key={index}>
-                <Text color="white">
-                  {notification.message}
-                </Text>
+                <Text color="white">{notification.message}</Text>
               </Box>
             ))}
           </Box>
@@ -167,7 +171,11 @@ const Navbar = () => {
                 height={24}
                 style={{ borderRadius: "20px" }}
               />
-              <Text color="#CCCCCC">{userData?.firstName +" "+ (userData?.lastName ?userData.lastName:"")}</Text>
+              <Text color="#CCCCCC">
+                {userData?.firstName +
+                  " " +
+                  (userData?.lastName ? userData.lastName : "")}
+              </Text>
             </Box>
             {profileDropdownSelected && (
               <Box
@@ -196,15 +204,18 @@ const Navbar = () => {
                     height={24}
                     style={{ borderRadius: "20px" }}
                   />
-                  <Text color="#CCCCCC">{userData?.firstName +" "+ (userData?.lastName ?userData.lastName:"")}</Text>
+                  <Text color="#CCCCCC">
+                    {userData?.firstName +
+                      " " +
+                      (userData?.lastName ? userData.lastName : "")}
+                  </Text>
                 </Box>
                 <Box
                   onClick={() => {
                     setprofileDropdownSelected(!profileDropdownSelected);
                     router.push("/settings");
                   }}
-                  color=
-                  "white"
+                  color="white"
                   cursor="pointer"
                 >
                   Settings
@@ -222,7 +233,7 @@ const Navbar = () => {
                 <Box
                   onClick={() => {
                     localStorage.setItem("userLoginCode", "");
-                    setUserData(null)
+                    setUserData(null);
                   }}
                   cursor="pointer"
                   color="red.600"
